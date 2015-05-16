@@ -115,26 +115,28 @@ Showtimes.prototype.getTheaters = function (cb) {
 
         if (info[0].match(/(hr |min)/)) {
           runtime = info[0].trim();
-          if (info[1].match(/Rated/)) {
-            rating = info[1].replace(/Rated/, '').trim();
-            if (typeof info[2] !== 'undefined') {
-              if (info[2].match(/(IMDB|Trailer)/i)) {
-                genre = false;
-              } else {
-                genre = info[2].trim();
-              }
-            } else {
-              genre = false;
-            }
-          } else {
-            rating = false;
+		  if(typeof info[1] !== 'undefined') {
+	          if (info[1].match(/Rated/)) {
+	            rating = info[1].replace(/Rated/, '').trim();
+	            if (typeof info[2] !== 'undefined') {
+	              if (info[2].match(/(IMDB|Trailer)/i)) {
+	                genre = false;
+	              } else {
+	                genre = info[2].trim();
+	              }
+	            } else {
+	              genre = false;
+	            }
+	          } else {
+	            rating = false;
 
-            if (info[1].match(/(IMDB|Trailer)/i)) {
-              genre = false;
-            } else {
-              genre = info[1].trim();
-            }
-          }
+	            if (info[1].match(/(IMDB|Trailer)/i)) {
+	              genre = false;
+	            } else {
+	              genre = info[1].trim();
+	            }
+	          }
+		  }
         } else {
           runtime = false;
           rating = false;
